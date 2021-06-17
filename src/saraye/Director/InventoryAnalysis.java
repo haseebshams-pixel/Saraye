@@ -195,6 +195,7 @@ public class InventoryAnalysis extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();
         new InventoryGraph().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 

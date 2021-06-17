@@ -11,7 +11,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
-import javax.swing.JPanel;
+import javax.swing.*;
+
 
 /**
  *
@@ -116,10 +117,11 @@ public class Home extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(41, 61, 28));
         jLabel3.setText("Designation:");
 
-        designation.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        designation.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         designation.setForeground(new java.awt.Color(41, 61, 28));
+        designation.setText("Director");
 
-        name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        name.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         name.setForeground(new java.awt.Color(41, 61, 28));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -326,36 +328,41 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //new AddProduct().setVisible(true);
+        new InvoiceAnalysis().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        new TaxInfo().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+         new ModifyPassword().setVisible(true);
+         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+         new CreateUser().setVisible(true);
+         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+         new DeleteUser().setVisible(true);
+         this.dispose();    // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "An Excel File has been Generated!","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         new InventoryAnalysis().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "An Excel File has been Generated!","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
