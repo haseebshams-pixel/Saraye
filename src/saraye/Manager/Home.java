@@ -6,7 +6,7 @@
 package saraye.Manager;
 import java.awt.*;
 import javax.swing.*;
-
+import saraye.M_Manager;
 /**
  *
  * @author Haseeb
@@ -15,9 +15,16 @@ public class Home extends javax.swing.JFrame {
 
     /**
      * Creates new form Home
-     */
-    public Home() {
+     */String user_name;
+        M_Manager manager;
+        String[] item_product = null;
+        int[] items_product_quantity = null;
+    public Home(String named) {
         initComponents();
+        manager = new M_Manager();
+        user_name = named;
+        name.setText(user_name);
+        designation.setText("Manager");
     }
 
     /**
@@ -39,16 +46,17 @@ public class Home extends javax.swing.JFrame {
         designation = new javax.swing.JLabel();
         name = new javax.swing.JLabel();
         jPanel4 = new RoundedPanel(70,new Color(255,255,255));
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        Addnewitem = new javax.swing.JButton();
+        Updateitem = new javax.swing.JButton();
+        Removeitem = new javax.swing.JButton();
+        Addproddetails = new javax.swing.JButton();
+        Viewallinv = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Home");
+        setMaximumSize(new java.awt.Dimension(860, 530));
         setMinimumSize(new java.awt.Dimension(860, 530));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(41, 61, 28));
 
@@ -74,7 +82,7 @@ public class Home extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(379, Short.MAX_VALUE)
+                .addContainerGap(356, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(224, 224, 224)
                 .addComponent(jButton1)
@@ -110,10 +118,10 @@ public class Home extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(41, 61, 28));
         jLabel3.setText("Designation:");
 
-        designation.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        designation.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         designation.setForeground(new java.awt.Color(41, 61, 28));
 
-        name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        name.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         name.setForeground(new java.awt.Color(41, 61, 28));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -122,16 +130,14 @@ public class Home extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                    .addComponent(designation, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                    .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,75 +158,63 @@ public class Home extends javax.swing.JFrame {
         jPanel4.setMaximumSize(new java.awt.Dimension(350, 377));
         jPanel4.setMinimumSize(new java.awt.Dimension(350, 377));
 
-        jButton2.setBackground(new java.awt.Color(41, 61, 28));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Add Inventory Item");
-        jButton2.setBorderPainted(false);
-        jButton2.setFocusPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Addnewitem.setBackground(new java.awt.Color(41, 61, 28));
+        Addnewitem.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Addnewitem.setForeground(new java.awt.Color(255, 255, 255));
+        Addnewitem.setText("Add Inventory Item");
+        Addnewitem.setBorderPainted(false);
+        Addnewitem.setFocusPainted(false);
+        Addnewitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                AddnewitemActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(41, 61, 28));
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Update Inventory Item");
-        jButton3.setBorderPainted(false);
-        jButton3.setFocusPainted(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Updateitem.setBackground(new java.awt.Color(41, 61, 28));
+        Updateitem.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Updateitem.setForeground(new java.awt.Color(255, 255, 255));
+        Updateitem.setText("Update Inventory Item");
+        Updateitem.setBorderPainted(false);
+        Updateitem.setFocusPainted(false);
+        Updateitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                UpdateitemActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(41, 61, 28));
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Remove Inventory Item");
-        jButton4.setBorderPainted(false);
-        jButton4.setFocusPainted(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        Removeitem.setBackground(new java.awt.Color(41, 61, 28));
+        Removeitem.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Removeitem.setForeground(new java.awt.Color(255, 255, 255));
+        Removeitem.setText("Remove Inventory Item");
+        Removeitem.setBorderPainted(false);
+        Removeitem.setFocusPainted(false);
+        Removeitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                RemoveitemActionPerformed(evt);
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(41, 61, 28));
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Update Invoice");
-        jButton5.setBorderPainted(false);
-        jButton5.setFocusPainted(false);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        Addproddetails.setBackground(new java.awt.Color(41, 61, 28));
+        Addproddetails.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Addproddetails.setForeground(new java.awt.Color(255, 255, 255));
+        Addproddetails.setText("Add Product Details");
+        Addproddetails.setBorderPainted(false);
+        Addproddetails.setFocusPainted(false);
+        Addproddetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                AddproddetailsActionPerformed(evt);
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(41, 61, 28));
-        jButton6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Add Product Details");
-        jButton6.setBorderPainted(false);
-        jButton6.setFocusPainted(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        Viewallinv.setBackground(new java.awt.Color(41, 61, 28));
+        Viewallinv.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Viewallinv.setForeground(new java.awt.Color(255, 255, 255));
+        Viewallinv.setText("View all Inventory Items");
+        Viewallinv.setBorderPainted(false);
+        Viewallinv.setFocusPainted(false);
+        Viewallinv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        jButton7.setBackground(new java.awt.Color(41, 61, 28));
-        jButton7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("View all Inventory Items");
-        jButton7.setBorderPainted(false);
-        jButton7.setFocusPainted(false);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                ViewallinvActionPerformed(evt);
             }
         });
 
@@ -228,32 +222,29 @@ public class Home extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(81, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                    .addComponent(Removeitem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Updateitem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Addnewitem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Addproddetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Viewallinv))
+                .addGap(75, 75, 75))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(Addnewitem, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Updateitem, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Removeitem, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Addproddetails, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Viewallinv, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -264,13 +255,13 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -289,35 +280,35 @@ public class Home extends javax.swing.JFrame {
         new saraye.Main().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //new AddProduct().setVisible(true);
+    private void AddnewitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddnewitemActionPerformed
+        new AddNewItem(user_name,manager).setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_AddnewitemActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void UpdateitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateitemActionPerformed
+        new UpdateItem(manager,user_name).setVisible(true);
+        this.dispose(); // TODO add your handling code here:
+    }//GEN-LAST:event_UpdateitemActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void RemoveitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveitemActionPerformed
+        new RemoveItem(manager,user_name).setVisible(true);
+        this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_RemoveitemActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void AddproddetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddproddetailsActionPerformed
+        new AddNewProduct(manager,user_name,item_product,items_product_quantity).setVisible(true);
+        this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_AddproddetailsActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void ViewallinvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewallinvActionPerformed
+        manager.get_all_items();
+        JOptionPane.showMessageDialog(null, "An Excel File has been Generated!","SUCCESS",JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+    }//GEN-LAST:event_ViewallinvActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[],String named) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -345,20 +336,19 @@ public class Home extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new Home(named).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Addnewitem;
+    private javax.swing.JButton Addproddetails;
+    private javax.swing.JButton Removeitem;
+    private javax.swing.JButton Updateitem;
+    private javax.swing.JButton Viewallinv;
     private javax.swing.JLabel designation;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

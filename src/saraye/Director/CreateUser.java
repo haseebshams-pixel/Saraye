@@ -12,6 +12,7 @@ import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import javax.swing.*;
+import saraye.M_Director;
 /**
  *
  * @author Haseeb
@@ -19,8 +20,12 @@ import javax.swing.*;
 public class CreateUser extends javax.swing.JFrame {
 
     /** Creates new form CreateUser */
-    public CreateUser() {
+    M_Director d;
+    String n="";
+    public CreateUser(M_Director director,String name) {
         initComponents();
+        d = director;
+        n=name;
     }
 
     /** This method is called from within the constructor to
@@ -41,7 +46,7 @@ public class CreateUser extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        type = new javax.swing.JComboBox<>();
         username = new javax.swing.JTextField();
         password = new javax.swing.JTextField();
 
@@ -73,7 +78,7 @@ public class CreateUser extends javax.swing.JFrame {
                 .add(jLabel4)
                 .add(277, 277, 277)
                 .add(jLabel1)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(362, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -82,7 +87,7 @@ public class CreateUser extends javax.swing.JFrame {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(jLabel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -119,10 +124,10 @@ public class CreateUser extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(41, 61, 28));
         jLabel5.setText("Enter Password:");
 
-        jComboBox1.setBackground(new java.awt.Color(41, 61, 28));
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Director", "Manager", "Cashier" }));
+        type.setBackground(new java.awt.Color(41, 61, 28));
+        type.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        type.setForeground(new java.awt.Color(255, 255, 255));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Director", "Manager", "Cashier" }));
 
         username.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         username.setForeground(new java.awt.Color(41, 61, 28));
@@ -144,7 +149,7 @@ public class CreateUser extends javax.swing.JFrame {
                             .add(jLabel5))
                         .add(55, 55, 55)
                         .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(type, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(username, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 163, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(password, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 163, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(jPanel3Layout.createSequentialGroup()
@@ -158,7 +163,7 @@ public class CreateUser extends javax.swing.JFrame {
                 .addContainerGap(56, Short.MAX_VALUE)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(type, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -177,7 +182,7 @@ public class CreateUser extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(215, Short.MAX_VALUE)
                 .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(228, 228, 228))
         );
@@ -197,20 +202,40 @@ public class CreateUser extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         this.dispose();
-        new Home().setVisible(true);
+        new Home(n).setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        JOptionPane.showMessageDialog(null, "User Created Successfully!","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
-        new Home().setVisible(true);
         
-        this.dispose();
+        int output = 0;
+        if(username.getText().isEmpty() || password.getText().isEmpty() || type.getSelectedItem().toString().equals("Select")){
+            JOptionPane.showMessageDialog(null, "Please Fill All Fields!","ERROR",JOptionPane.ERROR_MESSAGE);
+        } else {
+            int x =0;
+            if(type.getSelectedItem().toString().equals("Director")){
+                x = 2;
+            } else if(type.getSelectedItem().toString().equals("Manager")) {
+                x = 3;
+            } else {
+                x = 1;
+            }
+            output = d.create_user(username.getText(),password.getText(),x);
+        }
+        System.out.println(output);
+        if(output == 1){
+            JOptionPane.showMessageDialog(null, "User Created Successfully!","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
+            new Home(n).setVisible(true);
+            this.dispose();
+        } else if (output == 2) {
+            JOptionPane.showMessageDialog(null, "User already exists!","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[],M_Director director,String name) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -237,14 +262,13 @@ public class CreateUser extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateUser().setVisible(true);
+                new CreateUser(director,name).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -254,6 +278,7 @@ public class CreateUser extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField password;
+    private javax.swing.JComboBox<String> type;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
     class RoundedPanel extends JPanel {

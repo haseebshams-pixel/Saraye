@@ -197,13 +197,13 @@ public class Discount extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         
-        new Bill().setVisible(true);
-        this.dispose();
+        //new Bill().setVisible(true);
+        //this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new Bill().setVisible(true);
-        this.dispose();
+        //new Bill().setVisible(true);
+        //this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

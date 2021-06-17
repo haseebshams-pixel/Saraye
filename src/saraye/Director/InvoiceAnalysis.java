@@ -12,6 +12,13 @@ import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 /**
  *
  * @author Haseeb
@@ -19,8 +26,10 @@ import javax.swing.JPanel;
 public class InvoiceAnalysis extends javax.swing.JFrame {
 
     /** Creates new form InvoiceAnalysis */
-    public InvoiceAnalysis() {
+    String n="";
+    public InvoiceAnalysis(String name) {
         initComponents();
+        n=name;
     }
 
     /** This method is called from within the constructor to
@@ -215,18 +224,36 @@ public class InvoiceAnalysis extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         this.dispose();
-        new Home().setVisible(true);
+        new Home(n).setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.dispose();
-        new InvoiceGraph().setVisible(true);
+        
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.setValue(80, "Total Sales", "1-9-2021");
+        dataset.setValue(70, "Total Sales", "2-9-2021");
+        dataset.setValue(85, "Total Sales", "3-9-2021");
+        dataset.setValue(90, "Total Sales", "4-9-2021");
+
+        JFreeChart chart = ChartFactory.createBarChart("Invoice Analysis", "Dates","Total Sales", dataset, PlotOrientation.VERTICAL,false,true,false);
+
+        CategoryPlot p = chart.getCategoryPlot();
+
+        p.setRangeGridlinePaint(Color.black);
+
+        ChartFrame frame = new ChartFrame("Invoice Report",chart);
+
+        frame.setVisible(true);
+
+        frame.setSize(650,550);
+        //this.dispose();
+        //new InvoiceGraph().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[],String name) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -253,7 +280,7 @@ public class InvoiceAnalysis extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InvoiceAnalysis().setVisible(true);
+                new InvoiceAnalysis(name).setVisible(true);
             }
         });
     }

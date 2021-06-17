@@ -12,6 +12,8 @@ import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import javax.swing.*;
+import saraye.M_Director;
+
 /**
  *
  * @author Haseeb
@@ -19,8 +21,12 @@ import javax.swing.*;
 public class ModifyPassword extends javax.swing.JFrame {
 
     /** Creates new form ModifyPassword */
-    public ModifyPassword() {
+    M_Director d;
+    String n ="";
+    public ModifyPassword(M_Director dir,String name) {
         initComponents();
+        d = dir;
+        n=name;
     }
 
     /** This method is called from within the constructor to
@@ -37,12 +43,10 @@ public class ModifyPassword extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new RoundedPanel(70,new Color(255,255,255));
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         username = new javax.swing.JTextField();
         password = new javax.swing.JTextField();
         confirmpassword = new javax.swing.JTextField();
@@ -97,10 +101,6 @@ public class ModifyPassword extends javax.swing.JFrame {
         jPanel3.setMaximumSize(new java.awt.Dimension(380, 109));
         jPanel3.setMinimumSize(new java.awt.Dimension(380, 109));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(41, 61, 28));
-        jLabel2.setText("Select Account Type:");
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(41, 61, 28));
         jLabel3.setText("Enter Username:");
@@ -125,11 +125,6 @@ public class ModifyPassword extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(41, 61, 28));
         jLabel6.setText("Confirm New Password:");
 
-        jComboBox1.setBackground(new java.awt.Color(41, 61, 28));
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Director", "Manager", "Cashier" }));
-
         username.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         username.setForeground(new java.awt.Color(41, 61, 28));
 
@@ -146,13 +141,11 @@ public class ModifyPassword extends javax.swing.JFrame {
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel2)
                     .add(jLabel3)
                     .add(jLabel5)
                     .add(jLabel6))
                 .add(33, 33, 33)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(username, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 163, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(password, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 163, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(confirmpassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 163, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -165,11 +158,7 @@ public class ModifyPassword extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
-                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(18, 18, 18)
+                .addContainerGap(85, Short.MAX_VALUE)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(username, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -197,10 +186,10 @@ public class ModifyPassword extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(52, 52, 52)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(62, Short.MAX_VALUE)
                 .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .add(50, 50, 50))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
@@ -211,19 +200,37 @@ public class ModifyPassword extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         this.dispose();
-        new Home().setVisible(true);
+        new Home(n).setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        JOptionPane.showMessageDialog(null, "Password Modified Successfully!","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
-        new Home().setVisible(true);
-                this.dispose();
+        
+        int output = 0;
+        if(username.getText().isEmpty() || password.getText().isEmpty() || confirmpassword.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please Fill All Fields!","ERROR",JOptionPane.ERROR_MESSAGE);
+        } else {
+            if(password.getText().equals(confirmpassword.getText())){
+                output = d.modify_password(username.getText(),password.getText());
+                if(output == 1){
+                    JOptionPane.showMessageDialog(null, "Username does not exist!","ERROR",JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "User password modified!","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
+                    new Home(n).setVisible(true);
+                    this.dispose();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Password Mismatch!","ERROR",JOptionPane.ERROR_MESSAGE);                
+            }
+            
+        }
+        System.out.println(output);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[],M_Director dir,String name) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -250,7 +257,7 @@ public class ModifyPassword extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModifyPassword().setVisible(true);
+                new ModifyPassword(dir,name).setVisible(true);
             }
         });
     }
@@ -258,9 +265,7 @@ public class ModifyPassword extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField confirmpassword;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

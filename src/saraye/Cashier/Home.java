@@ -6,7 +6,8 @@
 package saraye.Cashier;
 import java.awt.*;
 import javax.swing.*;
-
+import saraye.M_Cashier;
+import saraye.Order;
 /**
  *
  * @author Haseeb
@@ -16,8 +17,15 @@ public class Home extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
-    public Home() {
+    String user_name = "";
+    M_Cashier cashier;
+    Order order = null;
+    public Home(String username) {
         initComponents();
+        user_name=username;
+        cashier = new M_Cashier();
+        designation.setText("Cashier");
+        name.setText(user_name);
     }
 
     /**
@@ -106,10 +114,10 @@ public class Home extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(41, 61, 28));
         jLabel3.setText("Designation:");
 
-        designation.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        designation.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         designation.setForeground(new java.awt.Color(41, 61, 28));
 
-        name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        name.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         name.setForeground(new java.awt.Color(41, 61, 28));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -118,15 +126,13 @@ public class Home extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(designation, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(designation, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -210,14 +216,14 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new Bill().setVisible(true);
+        new Bill(cashier,user_name,order).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[],String username) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -244,7 +250,7 @@ public class Home extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new Home(username).setVisible(true);
             }
         });
     }

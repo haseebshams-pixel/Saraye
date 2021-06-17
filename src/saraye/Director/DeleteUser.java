@@ -12,6 +12,7 @@ import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import javax.swing.*;
+import saraye.M_Director;
 /**
  *
  * @author Haseeb
@@ -19,8 +20,12 @@ import javax.swing.*;
 public class DeleteUser extends javax.swing.JFrame {
 
     /** Creates new form DeleteUser */
-    public DeleteUser() {
+    M_Director d;
+    String n= "";
+    public DeleteUser(M_Director dir,String name) {
         initComponents();
+        d = dir;
+        n=name;
     }
 
     /** This method is called from within the constructor to
@@ -162,21 +167,32 @@ public class DeleteUser extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         this.dispose();
-        new Home().setVisible(true);
+        new Home(n).setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        JOptionPane.showMessageDialog(null, "Deleted User Successfully!","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
-        new Home().setVisible(true);
         
-        this.dispose();
+        int output = 0;
+        if(username.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please Fill All Fields!","ERROR",JOptionPane.ERROR_MESSAGE);
+        } else {
+            output = d.delete_user(username.getText());
+        }
+        System.out.println(output);
+        if(output == 1){
+            JOptionPane.showMessageDialog(null, "User Deleted Successfully!","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
+            new Home(n).setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Cannot Delete this USER!","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[],M_Director dir,String name) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -203,7 +219,7 @@ public class DeleteUser extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeleteUser().setVisible(true);
+                new DeleteUser(dir,name).setVisible(true);
             }
         });
     }

@@ -12,6 +12,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
+import saraye.M_Director;
+import saraye.Config;
 /**
  *
  * @author Haseeb
@@ -19,8 +21,17 @@ import java.awt.RenderingHints;
 public class TaxInfo extends javax.swing.JFrame {
 
     /** Creates new form TaxInfo */
-    public TaxInfo() {
+    String type;
+    M_Director d;
+    Config config;
+    String n;
+    public TaxInfo(M_Director dir,String name) {
         initComponents();
+        d=dir;
+        type = "";
+        n = name;
+        config = d.get_tax_info();
+        tax.setText(String.valueOf(config.getTax_cash()));
     }
 
     /** This method is called from within the constructor to
@@ -44,8 +55,8 @@ public class TaxInfo extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         tax = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        cashRadio = new javax.swing.JRadioButton();
+        credRadio = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(860, 530));
@@ -127,17 +138,27 @@ public class TaxInfo extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(41, 61, 28));
         jLabel5.setText("Payment Method:");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setForeground(new java.awt.Color(41, 61, 28));
-        jRadioButton1.setText("CASH");
-        jRadioButton1.setContentAreaFilled(false);
-        jRadioButton1.setFocusPainted(false);
+        buttonGroup1.add(cashRadio);
+        cashRadio.setForeground(new java.awt.Color(41, 61, 28));
+        cashRadio.setText("CASH");
+        cashRadio.setContentAreaFilled(false);
+        cashRadio.setFocusPainted(false);
+        cashRadio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cashRadioMouseClicked(evt);
+            }
+        });
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setForeground(new java.awt.Color(41, 61, 28));
-        jRadioButton2.setText("CREDIT CARD");
-        jRadioButton2.setContentAreaFilled(false);
-        jRadioButton2.setFocusPainted(false);
+        buttonGroup1.add(credRadio);
+        credRadio.setForeground(new java.awt.Color(41, 61, 28));
+        credRadio.setText("CREDIT CARD");
+        credRadio.setContentAreaFilled(false);
+        credRadio.setFocusPainted(false);
+        credRadio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                credRadioMouseClicked(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -156,13 +177,13 @@ public class TaxInfo extends javax.swing.JFrame {
                 .add(18, 18, 18)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel3Layout.createSequentialGroup()
-                        .add(jRadioButton1)
+                        .add(cashRadio)
                         .add(18, 18, 18)
-                        .add(jRadioButton2))
-                    .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                        .add(updatedtax, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                        .add(tax, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .add(credRadio))
+                    .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(updatedtax)
+                        .add(tax, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 176, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(21, 21, 21))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -178,8 +199,8 @@ public class TaxInfo extends javax.swing.JFrame {
                 .add(18, 18, 18)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jRadioButton1)
-                    .add(jRadioButton2))
+                    .add(cashRadio)
+                    .add(credRadio))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 53, Short.MAX_VALUE)
                 .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(23, 23, 23))
@@ -210,20 +231,37 @@ public class TaxInfo extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         this.dispose();
-        new Home().setVisible(true);
+        new Home(n).setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        JOptionPane.showMessageDialog(null, "Tax% Updated Successfully","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
-        new Home().setVisible(true);
-        this.dispose();
+        
+        if(updatedtax.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please Fill All Fields!","ERROR",JOptionPane.ERROR_MESSAGE);
+        } else {
+            d.update_tax_info(type,Double.parseDouble(updatedtax.getText()));
+            JOptionPane.showMessageDialog(null, "Tax% Updated Successfully","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
+            new Home(n).setVisible(true);
+            this.dispose();
+        }
+
         
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void cashRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cashRadioMouseClicked
+        type = "cash";
+        tax.setText(String.valueOf(config.getTax_cash()));
+    }//GEN-LAST:event_cashRadioMouseClicked
+
+    private void credRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_credRadioMouseClicked
+        type = "card";// TODO add your handling code here:
+        tax.setText(String.valueOf(config.getTax_card()));
+    }//GEN-LAST:event_credRadioMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[],M_Director dir,String name) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -250,13 +288,15 @@ public class TaxInfo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TaxInfo().setVisible(true);
+                new TaxInfo(dir,name).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton cashRadio;
+    private javax.swing.JRadioButton credRadio;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -266,8 +306,6 @@ public class TaxInfo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JLabel tax;
     private javax.swing.JTextField updatedtax;
     // End of variables declaration//GEN-END:variables

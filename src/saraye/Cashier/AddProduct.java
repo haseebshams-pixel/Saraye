@@ -11,8 +11,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
-import javax.swing.JPanel;
-
+import javax.swing.*;
+import saraye.M_Cashier;
+import saraye.Order;
 /**
  *
  * @author Haseeb
@@ -22,8 +23,14 @@ public class AddProduct extends javax.swing.JFrame {
     /**
      * Creates new form AddProduct
      */
-    public AddProduct() {
+    M_Cashier c;
+    String n="";
+    Order o;
+    public AddProduct(M_Cashier cashier,String name,Order order) {
         initComponents();
+        c=cashier;
+        n=name;
+        o=order;
     }
 
     /**
@@ -42,7 +49,7 @@ public class AddProduct extends javax.swing.JFrame {
         jPanel3 = new RoundedPanel(70,new Color(255,255,255));
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        prodName = new javax.swing.JTextField();
+        prodname = new javax.swing.JTextField();
         quantity = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
 
@@ -104,11 +111,11 @@ public class AddProduct extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(41, 61, 28));
         jLabel3.setText("Enter Quantity:");
 
-        prodName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        prodName.setForeground(new java.awt.Color(41, 61, 28));
-        prodName.addActionListener(new java.awt.event.ActionListener() {
+        prodname.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        prodname.setForeground(new java.awt.Color(41, 61, 28));
+        prodname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prodNameActionPerformed(evt);
+                prodnameActionPerformed(evt);
             }
         });
 
@@ -141,7 +148,7 @@ public class AddProduct extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(prodName, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(prodname, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(jButton3)))
@@ -153,7 +160,7 @@ public class AddProduct extends javax.swing.JFrame {
                 .addGap(70, 70, 70)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prodName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(prodname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,24 +195,30 @@ public class AddProduct extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void prodNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodNameActionPerformed
+    private void prodnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_prodNameActionPerformed
+    }//GEN-LAST:event_prodnameActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         this.dispose();
-        new Bill().setVisible(true);
+        new Bill(c,n,o).setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new Bill().setVisible(true);
-        this.dispose();
+        
+        if(prodname.getText().isEmpty() || quantity.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please Fill All Fields!","ERROR",JOptionPane.ERROR_MESSAGE);
+        } else {
+            o = c.add_product(prodname.getText(),Integer.parseInt(quantity.getText()),o);
+            new Bill(c,n,o).setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[],M_Cashier cashier,String name,Order order) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -232,7 +245,7 @@ public class AddProduct extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddProduct().setVisible(true);
+                new AddProduct(cashier,name,order).setVisible(true);
             }
         });
     }
@@ -246,7 +259,7 @@ public class AddProduct extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField prodName;
+    private javax.swing.JTextField prodname;
     private javax.swing.JTextField quantity;
     // End of variables declaration//GEN-END:variables
 class RoundedPanel extends JPanel {

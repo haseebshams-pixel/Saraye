@@ -8,6 +8,8 @@ package saraye.Manager;
 import java.awt.*;
 import javax.swing.*;
 
+import saraye.M_Manager;
+
 /**
  *
  * @author Haseeb
@@ -123,13 +125,14 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        Manager m = new Manager();
+        M_Manager m = new M_Manager();
         String pass = new String(password.getPassword());
         if (username.getText().trim().isEmpty() || pass.length() == 0) {
             JOptionPane.showMessageDialog(null, "Please enter all FIELDS", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
             if (m.login(username.getText().trim(), pass, 3)) {
-                System.out.println("Login Successful");
+                new Home(username.getText().trim()).setVisible(true);
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect Username or Password", "ERROR", JOptionPane.ERROR_MESSAGE);
             }

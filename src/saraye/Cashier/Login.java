@@ -7,6 +7,7 @@
 package saraye.Cashier;
 import java.awt.*;
 import javax.swing.*;
+import saraye.M_Cashier;
 /**
  *
  * @author Haseeb
@@ -113,14 +114,14 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        
-        Cashier c = new Cashier();
+        M_Cashier c = new M_Cashier();
         String pass = new String(password.getPassword());
         if(username.getText().trim().isEmpty() || pass.length() == 0 ){
             JOptionPane.showMessageDialog(null, "Please enter all FIELDS","ERROR",JOptionPane.ERROR_MESSAGE);
         } else {
             if(c.login(username.getText().trim(),pass,1)){
                 this.dispose();
-                new Home().setVisible(true);
+                new Home(username.getText().trim()).setVisible(true);
 		} else {
                 JOptionPane.showMessageDialog(null, "Incorrect Username or Password","ERROR",JOptionPane.ERROR_MESSAGE);
 		}
