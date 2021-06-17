@@ -48,8 +48,8 @@ public class Discount extends javax.swing.JFrame {
         discount = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(860, 530));
-        setMinimumSize(new java.awt.Dimension(860, 530));
+        setMaximumSize(new java.awt.Dimension(659, 509));
+        setMinimumSize(new java.awt.Dimension(659, 509));
 
         jPanel1.setBackground(new java.awt.Color(41, 61, 28));
 
@@ -70,11 +70,11 @@ public class Discount extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addContainerGap()
                 .addComponent(jLabel4)
-                .addGap(277, 277, 277)
+                .addGap(202, 202, 202)
                 .addComponent(jLabel1)
-                .addContainerGap(356, Short.MAX_VALUE))
+                .addContainerGap(259, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +103,7 @@ public class Discount extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(41, 61, 28));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Generate Bill");
+        jButton2.setText("Apply");
         jButton2.setBorderPainted(false);
         jButton2.setFocusPainted(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +127,7 @@ public class Discount extends javax.swing.JFrame {
         credcard.setFocusPainted(false);
 
         discount.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        discount.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter Coupon Code"));
+        discount.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter Discount Percentage"));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -174,17 +174,17 @@ public class Discount extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(261, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(120, 120, 120)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(219, 219, 219))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -197,7 +197,7 @@ public class Discount extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         
-        new PaymentOption().setVisible(true);
+        new Bill().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
