@@ -258,8 +258,10 @@ public class AddNewProduct extends javax.swing.JFrame {
         int output = 0;
         if(prodname.getText().isEmpty() || price.getText().isEmpty() || prodid.getText().isEmpty()){
            JOptionPane.showMessageDialog(null, "Please Fill All Fields!","ERROR",JOptionPane.ERROR_MESSAGE);
-       } else {
-            if(item_product==null){
+       } else if(Integer.parseInt(price.getText().toString())<=0 || Integer.parseInt(prodid.getText().toString())<=0) {
+            JOptionPane.showMessageDialog(null, "Please Enter Correct Values!","ERROR",JOptionPane.ERROR_MESSAGE);
+        } else {
+           if(item_product==null){
                 JOptionPane.showMessageDialog(null, "Please Add Items!","ERROR",JOptionPane.ERROR_MESSAGE);
             } else {
                 output = m.add_product(Integer.parseInt(prodid.getText()),prodname.getText(),Integer.parseInt(price.getText()),item_product,items_product_quantity);
@@ -269,7 +271,7 @@ public class AddNewProduct extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Product info Added Successfully!","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
                 }
             }
-        }
+       }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void prodidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodidActionPerformed

@@ -121,6 +121,7 @@ public class Login extends javax.swing.JFrame {
         } else {
             if(c.login(username.getText().trim(),pass,1)){
                 this.dispose();
+                c.setUsername(username.getText().toString());
                 new Home(username.getText().trim()).setVisible(true);
 		} else {
                 JOptionPane.showMessageDialog(null, "Incorrect Username or Password","ERROR",JOptionPane.ERROR_MESSAGE);

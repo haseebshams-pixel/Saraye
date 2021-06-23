@@ -233,6 +233,8 @@ public class AddNewItem extends javax.swing.JFrame {
         int output=0;
         if(id.getText().isEmpty() || itemname.getText().isEmpty() || quantity.getText().isEmpty() ){
             JOptionPane.showMessageDialog(null, "Please Fill All Fields!","ERROR",JOptionPane.ERROR_MESSAGE);
+        } else if(Integer.parseInt(id.getText().toString())<=0 || Integer.parseInt(quantity.getText().toString())<=0) {
+            JOptionPane.showMessageDialog(null, "Please Enter Correct Values!","ERROR",JOptionPane.ERROR_MESSAGE);
         } else {
             output = m.add_new_item(Integer.parseInt(id.getText()),itemname.getText(),Integer.parseInt(quantity.getText()));
             if(output==1){

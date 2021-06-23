@@ -209,14 +209,19 @@ public class UpdateItem extends javax.swing.JFrame {
         if(itemname.getText().isEmpty() || quantity.getText().isEmpty() ){
             JOptionPane.showMessageDialog(null, "Please Fill All Fields!","ERROR",JOptionPane.ERROR_MESSAGE);
         } else {
-            output = m.update_item_quantity(itemname.getText(),Integer.parseInt(quantity.getText()));
+            if(Integer.parseInt(quantity.getText().toString())){
+                JOptionPane.showMessageDialog(null, "Please Enter Correct Quantity!","ERROR",JOptionPane.ERROR_MESSAGE);
+            } else {
+               output = m.update_item_quantity(itemname.getText(),Integer.parseInt(quantity.getText()));
             if(output==1){
                 JOptionPane.showMessageDialog(null, "Item does not exist!","ERROR",JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "Item Quantity Updated Successfully!","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
                 new Home(n).setVisible(true);
+            } 
             }
+            
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

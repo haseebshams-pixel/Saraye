@@ -209,9 +209,13 @@ public class AddProduct extends javax.swing.JFrame {
         if(prodname.getText().isEmpty() || quantity.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please Fill All Fields!","ERROR",JOptionPane.ERROR_MESSAGE);
         } else {
-            o = c.add_product(prodname.getText(),Integer.parseInt(quantity.getText()),o);
-            new Bill(c,n,o).setVisible(true);
-            this.dispose();
+            if(Integer.parseInt(quantity.getText().toString())<=0){
+                JOptionPane.showMessageDialog(null, "Please Enter Correct Quantity!","ERROR",JOptionPane.ERROR_MESSAGE);
+            } else {
+                o = c.add_product(prodname.getText(),Integer.parseInt(quantity.getText()),o);
+                new Bill(c,n,o).setVisible(true);
+                this.dispose();   
+            }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

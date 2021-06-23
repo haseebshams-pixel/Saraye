@@ -31,7 +31,7 @@ public class M_Director extends User{
         List<Item> items = new ArrayList<Item>();
         items = db.get_all_items();
         try{
-            String filename = "D:\\Project\\inventory.xlsx";
+            String filename = "D:\\inventory.xlsx";
             HSSFWorkbook workbook = new HSSFWorkbook();
             HSSFSheet sheet = workbook.createSheet("Inventory");
 
@@ -118,7 +118,7 @@ public class M_Director extends User{
         orders = db.get_all_invoices();
 
         try{
-            String filename = "D:\\Project\\invoices.xlsx";
+            String filename = "D:\\invoices.xlsx";
             HSSFWorkbook workbook = new HSSFWorkbook();
             HSSFSheet sheet = workbook.createSheet("Invoices");
 

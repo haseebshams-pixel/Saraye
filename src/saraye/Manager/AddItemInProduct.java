@@ -210,29 +210,33 @@ public class AddItemInProduct extends javax.swing.JFrame {
        if(itemname.getText().isEmpty() || quantity.getText().isEmpty()){
            JOptionPane.showMessageDialog(null, "Please Fill All Fields!","ERROR",JOptionPane.ERROR_MESSAGE);
        }else {
-           if(item_product == null){
-           item_product = new String [1];
-           item_product[0]=itemname.getText();
-           item_product_quantity=new int[1];
-           item_product_quantity[0]=Integer.parseInt(quantity.getText());
-           new AddNewProduct(m,n,item_product,item_product_quantity).setVisible(true);
-           this.dispose();
-       } else {
-           System.out.println("Here");
-           String []temp=new String[item_product.length+1];
-           for(int i=0;i<item_product.length;i++){
-               temp[i]=item_product[i];
-           }
-           int x=item_product.length;
-           temp[x]=itemname.getText();
-           int []temp2=new int[item_product_quantity.length+1];
-           for(int i=0;i<item_product_quantity.length;i++){
-               temp2[i]=item_product_quantity[i];
-           }
-           x=item_product_quantity.length;
-           temp2[x]=Integer.parseInt(quantity.getText());
-           new AddNewProduct(m,n,temp,temp2).setVisible(true);
-           this.dispose();
+           if(Integer.parseInt(quantity.getText().toString())<=0){
+               JOptionPane.showMessageDialog(null, "Please Enter Correct Quantity!","ERROR",JOptionPane.ERROR_MESSAGE);
+           }  else {
+               if(item_product == null){
+                item_product = new String [1];
+                item_product[0]=itemname.getText();
+                item_product_quantity=new int[1];
+                item_product_quantity[0]=Integer.parseInt(quantity.getText());
+                new AddNewProduct(m,n,item_product,item_product_quantity).setVisible(true);
+                this.dispose();
+                } else {
+                System.out.println("Here");
+                String []temp=new String[item_product.length+1];
+                for(int i=0;i<item_product.length;i++){
+                    temp[i]=item_product[i];
+                }
+                int x=item_product.length;
+                temp[x]=itemname.getText();
+                int []temp2=new int[item_product_quantity.length+1];
+                for(int i=0;i<item_product_quantity.length;i++){
+                    temp2[i]=item_product_quantity[i];
+                }
+                x=item_product_quantity.length;
+                temp2[x]=Integer.parseInt(quantity.getText());
+                new AddNewProduct(m,n,temp,temp2).setVisible(true);
+                this.dispose();
+                }
            }
        }
         

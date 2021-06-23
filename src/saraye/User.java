@@ -13,6 +13,18 @@ public abstract class User {
         return this.type;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public boolean login(String username, String password, int type){
         this.username = username;
         this.password = password;

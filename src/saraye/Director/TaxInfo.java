@@ -239,10 +239,14 @@ public class TaxInfo extends javax.swing.JFrame {
         if(updatedtax.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please Fill All Fields!","ERROR",JOptionPane.ERROR_MESSAGE);
         } else {
-            d.update_tax_info(type,Double.parseDouble(updatedtax.getText()));
-            JOptionPane.showMessageDialog(null, "Tax% Updated Successfully","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
-            new Home(n).setVisible(true);
-            this.dispose();
+            if(Double.parseDouble(updatedtax.getText().toString)<=0){
+                JOptionPane.showMessageDialog(null, "Please Enter Correct Tax!","ERROR",JOptionPane.ERROR_MESSAGE);                
+            } else {
+                d.update_tax_info(type,Double.parseDouble(updatedtax.getText()));
+                JOptionPane.showMessageDialog(null, "Tax% Updated Successfully","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
+                new Home(n).setVisible(true);
+                this.dispose();
+            }
         }
 
         
