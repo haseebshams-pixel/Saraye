@@ -1,13 +1,13 @@
 package saraye;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class M_Director extends User{
 
@@ -32,10 +32,10 @@ public class M_Director extends User{
         items = db.get_all_items();
         try{
             String filename = "D:\\inventory.xlsx";
-            HSSFWorkbook workbook = new HSSFWorkbook();
-            HSSFSheet sheet = workbook.createSheet("Inventory");
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("Inventory");
 
-            HSSFRow rowhead = sheet.createRow((short)0);
+            XSSFRow rowhead = sheet.createRow((short)0);
             rowhead.createCell(0).setCellValue("Item Id");
             rowhead.createCell(1).setCellValue("Item Name");
             rowhead.createCell(2).setCellValue("Quantity");
@@ -43,7 +43,7 @@ public class M_Director extends User{
             for(int i=0; i<items.size(); i++){
                 Item item = items.get(i);
 
-                HSSFRow row = sheet.createRow((short)i+1);
+                XSSFRow row = sheet.createRow((short)i+1);
                 String id = String.valueOf(item.item_id);
                 String quantity = String.valueOf(item.quantity);
                 row.createCell(0).setCellValue(id);
@@ -119,10 +119,10 @@ public class M_Director extends User{
 
         try{
             String filename = "D:\\invoices.xlsx";
-            HSSFWorkbook workbook = new HSSFWorkbook();
-            HSSFSheet sheet = workbook.createSheet("Invoices");
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("Invoices");
 
-            HSSFRow rowhead = sheet.createRow((short)0);
+            XSSFRow rowhead = sheet.createRow((short)0);
             rowhead.createCell(0).setCellValue("Cashier ID");
             rowhead.createCell(1).setCellValue("Order ID");
             rowhead.createCell(2).setCellValue("Payment Amount");
@@ -133,7 +133,7 @@ public class M_Director extends User{
             for(int i=0; i<orders.size(); i++){
                 Order o = orders.get(i);
 
-                HSSFRow row = sheet.createRow((short)i+1);
+                XSSFRow row = sheet.createRow((short)i+1);
                 row.createCell(0).setCellValue(o.cashier_id);
                 row.createCell(1).setCellValue(o.order_id);
                 row.createCell(2).setCellValue(o.payment_amount);

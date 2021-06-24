@@ -209,7 +209,7 @@ public class UpdateItem extends javax.swing.JFrame {
         if(itemname.getText().isEmpty() || quantity.getText().isEmpty() ){
             JOptionPane.showMessageDialog(null, "Please Fill All Fields!","ERROR",JOptionPane.ERROR_MESSAGE);
         } else {
-            if(Integer.parseInt(quantity.getText().toString())){
+            if(Integer.parseInt(quantity.getText().toString())<=0){
                 JOptionPane.showMessageDialog(null, "Please Enter Correct Quantity!","ERROR",JOptionPane.ERROR_MESSAGE);
             } else {
                output = m.update_item_quantity(itemname.getText(),Integer.parseInt(quantity.getText()));

@@ -25,14 +25,17 @@ public class M_Cashier extends User{
     public Order add_product(String product_name, int quantity, Order order){
         Database db = new Database();
         Product p = db.get_product_info(product_name);
-        OrderProduct op = new OrderProduct();
-        op.product_id = p.product_id;
-        op.product_name = p.product_name;
-        op.price = p.price;
-        op.quantity = quantity;
-        order.order_products.add(op);
+        if(p!=null){
+            OrderProduct op = new OrderProduct();
+            op.product_id = p.product_id;
+            op.product_name = p.product_name;
+            op.price = p.price;
+            op.quantity = quantity;
+            order.order_products.add(op);
 
-        order.total += op.price * quantity;
+            order.total += op.price * quantity;
+            return order;
+        }
         return order;
     }
 

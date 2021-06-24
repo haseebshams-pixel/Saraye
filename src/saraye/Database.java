@@ -372,7 +372,7 @@ public class Database {
 
     public Product get_product_info(String product_name){
         Connection conn = get_conn();
-        Product product = new Product();
+        Product product = null;
 
         if(conn!=null){
             try {
@@ -381,6 +381,7 @@ public class Database {
                 ResultSet rs = stmt.executeQuery(sql);
 
                 if(rs.next()) {
+                    product = new Product();
                     product.product_name = product_name;
                     product.product_id = rs.getInt("product_id");
                     product.price = rs.getInt("price");

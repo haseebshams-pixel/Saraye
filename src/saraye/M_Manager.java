@@ -2,9 +2,9 @@ package saraye;
 import java.util.ArrayList;
 import java.util.List;
 import  java.io.*;
-import  org.apache.poi.hssf.usermodel.HSSFSheet;
-import  org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import  org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class M_Manager extends User{
 
@@ -56,10 +56,10 @@ public class M_Manager extends User{
 
         try{
             String filename = "C:/Users/Haseeb/Desktop/inventory.xlsx";
-            HSSFWorkbook workbook = new HSSFWorkbook();
-            HSSFSheet sheet = workbook.createSheet("Inventory");
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("Inventory");
 
-            HSSFRow rowhead = sheet.createRow((short)0);
+            XSSFRow rowhead = sheet.createRow((short)0);
             rowhead.createCell(0).setCellValue("Item Id");
             rowhead.createCell(1).setCellValue("Item Name");
             rowhead.createCell(2).setCellValue("Quantity");
@@ -67,7 +67,7 @@ public class M_Manager extends User{
             for(int i=0; i<items.size(); i++){
                 Item item = items.get(i);
 
-                HSSFRow row = sheet.createRow((short)i+1);
+                XSSFRow row = sheet.createRow((short)i+1);
                 String id = String.valueOf(item.item_id);
                 String quantity = String.valueOf(item.quantity);
                 row.createCell(0).setCellValue(id);

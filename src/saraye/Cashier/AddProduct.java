@@ -212,9 +212,17 @@ public class AddProduct extends javax.swing.JFrame {
             if(Integer.parseInt(quantity.getText().toString())<=0){
                 JOptionPane.showMessageDialog(null, "Please Enter Correct Quantity!","ERROR",JOptionPane.ERROR_MESSAGE);
             } else {
+                int prevlen = o.getOrder_products().size(); 
                 o = c.add_product(prodname.getText(),Integer.parseInt(quantity.getText()),o);
-                new Bill(c,n,o).setVisible(true);
-                this.dispose();   
+                if(o.getOrder_products().size()>prevlen){
+                    new Bill(c,n,o).setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Product not Found!","ERROR",JOptionPane.ERROR_MESSAGE);
+                    new Bill(c,n,o).setVisible(true);
+                    this.dispose();
+                }
+                  
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
